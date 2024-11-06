@@ -1,19 +1,31 @@
 package Bank_Application;
 import java.util.Scanner;
 
+/**
+ * Kelas ini mengelola berbagai proses yang dapat dilakukan pada sistem perbankan, seperti membuka akun baru, 
+ * mendepositkan dana, menarik dana, memeriksa saldo, dan menampilkan akun demo.
+ * 
+ * @author pratiksutar841
+
+ */
 public class procces 
 {
- Scanner sc = new Scanner(System.in);  
- static BankInfo bank1 = new BankInfo();
+    Scanner sc = new Scanner(System.in);  
+    static BankInfo bank1 = new BankInfo();
 
+    // Inisialisasi akun dengan data default
     static 
     {
-    	bank1.setAccno("854621348597");
-    	bank1.setName("RBL Bank");
-    	bank1.setAcc_type("Saving");
-    	bank1.setBalance(10000000);
-  
+        bank1.setAccno("854621348597");
+        bank1.setName("RBL Bank");
+        bank1.setAcc_type("Saving");
+        bank1.setBalance(10000000);
     }
+
+    /**
+     * Membuka akun baru dengan meminta informasi dari pengguna.
+     * Menyimpan data akun baru dan menampilkan detailnya.
+     */
     public void openAccount() 
     {  
         System.out.print("Enter Account No: ");  
@@ -30,54 +42,66 @@ public class procces
         System.out.println("Account no             :: " + bank1.getAccno());  
         System.out.println("Account type           :: " + bank1.getAcc_type());  
         System.out.println("Balance                :: " + bank1.getBalance());  
-        
     } 
+
+    /**
+     * Menampilkan informasi akun demo dengan saldo yang telah ditentukan.
+     * Akun ini hanya digunakan untuk tujuan demo.
+     */
     public void demoaccount() 
     {
-    	int  demobalance=50000;
-    	System.out.println("Name of account holder :: " + "Demo user");  
+        int demobalance = 50000;
+        System.out.println("Name of account holder :: " + "Demo user");  
         System.out.println("Account no             :: " + "8529637412");  
         System.out.println("Account type           :: " + "demo");  
         System.out.println("Balance                :: " + demobalance);  
-    	
     }
+
+    /**
+     * Memproses setoran dana ke akun.
+     * Mengupdate saldo akun setelah setoran dan menampilkan saldo terbaru.
+     */
     public void deposite()
     {
-    	System.out.println("Enter the Amount you want to deposit ::");
-		int deposit =sc.nextInt();
-		int amount =(int) ((bank1.getBalance())+deposit);
-		bank1.setBalance(amount);
-		System.out.println(" "+ deposit+" is deposited into your Account");
-		System.out.println("Current Available Balance is Rs = "+ bank1.getBalance());
-		
+        System.out.println("Enter the Amount you want to deposit ::");
+        int deposit = sc.nextInt();
+        int amount = (int) (bank1.getBalance() + deposit);
+        bank1.setBalance(amount);
+        System.out.println(" " + deposit + " is deposited into your Account");
+        System.out.println("Current Available Balance is Rs = " + bank1.getBalance());
     }
+
+    /**
+     * Memproses penarikan dana dari akun.
+     * Mengecek apakah saldo mencukupi untuk penarikan, jika tidak, menampilkan pesan "Low Balance".
+     */
     public void withdraw() 
     {
-
-    	System.out.println("Enter the Amount you want to withdraw:");
-		Scanner sc= new Scanner(System.in);
-		int withdraw =sc.nextInt();
-		if(withdraw<bank1.getBalance())
-		{
-			bank1.setBalance(bank1.getBalance()-withdraw);
-			System.out.println(" "+ withdraw+" is withdrawn from your Account");
-			System.out.println("Current Available Balance is Rs  ::"+ bank1.getBalance());
-		}
-		else
-		{
-			System.out.println("Low Balance");
-			System.out.println("Current Available Balance is Rs  ::"+ bank1.getBalance());
-		}
+        System.out.println("Enter the Amount you want to withdraw:");
+        int withdraw = sc.nextInt();
+        if (withdraw < bank1.getBalance())
+        {
+            bank1.setBalance(bank1.getBalance() - withdraw);
+            System.out.println(" " + withdraw + " is withdrawn from your Account");
+            System.out.println("Current Available Balance is Rs  ::" + bank1.getBalance());
+        }
+        else
+        {
+            System.out.println("Low Balance");
+            System.out.println("Current Available Balance is Rs  ::" + bank1.getBalance());
+        }
     }
-	public void checkbalance() 
-	{
-		System.out.println("Your name is           :: "+bank1.getName());
+
+    /**
+     * Menampilkan informasi saldo akun saat ini.
+     * Menampilkan nama, nomor akun, tipe akun, dan saldo akun.
+     */
+    public void checkbalance() 
+    {
+        System.out.println("Your name is           :: " + bank1.getName());
         System.out.println("Account no             :: " + bank1.getAccno());  
         System.out.println("Account type           :: " + bank1.getAcc_type());  
-	    System.out.println("Balance                :: " + bank1.getBalance());  
-		System.out.println("THANKS FOR BALANCE CHECKING ");
-		
-	}
-    
-
+        System.out.println("Balance                :: " + bank1.getBalance());  
+        System.out.println("THANKS FOR BALANCE CHECKING ");
+    }
 }
